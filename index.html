@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game+ Party Hub - Giriş</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Ana Giriş Sayfası -->
+        <div id="loginPage">
+            <!-- Header -->
+            <div class="header">
+                <h1><i class="fas fa-gamepad"></i> Game+ Party Hub</h1>
+                <p>Arkadaşlarınızla oyun planlaması yapın, oy verin ve birlikte oynayın!</p>
+                <div class="feature-highlights">
+                    <span class="feature"><i class="fas fa-users"></i> Parti Oluştur</span>
+                    <span class="feature"><i class="fas fa-vote-yea"></i> Oyun Oyla</span>
+                    <span class="feature"><i class="fas fa-clock"></i> Zaman Planla</span>
+                    <span class="feature"><i class="fas fa-trophy"></i> Skor Takip</span>
+                </div>
+            </div>
+
+            <!-- Alert Area -->
+            <div id="alertArea"></div>
+
+            <!-- Giriş/Kayıt Formu -->
+            <div class="card login-card">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" onclick="showLogin()">
+                        <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                    </button>
+                    <button class="auth-tab" onclick="showRegister()">
+                        <i class="fas fa-user-plus"></i> Kayıt Ol
+                    </button>
+                </div>
+
+                <!-- Giriş Formu -->
+                <div id="loginForm" class="auth-form">
+                    <h3><i class="fas fa-sign-in-alt"></i> Hesabınıza Giriş Yapın</h3>
+                    <form id="loginFormElement">
+                        <div class="form-group">
+                            <label for="loginGamerTag">Gamer Tag:</label>
+                            <input type="text" id="loginGamerTag" class="form-control" required 
+                                   placeholder="Gamer tag'inizi girin">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Kayıt Formu -->
+                <div id="registerForm" class="auth-form" style="display: none;">
+                    <h3><i class="fas fa-user-plus"></i> Yeni Hesap Oluştur</h3>
+                    <form id="registerFormElement">
+                        <div class="form-group">
+                            <label for="registerName">Adınız:</label>
+                            <input type="text" id="registerName" class="form-control" required 
+                                   placeholder="Tam adınızı girin">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerGamerTag">Gamer Tag:</label>
+                            <input type="text" id="registerGamerTag" class="form-control" required 
+                                   placeholder="Benzersiz gamer tag seçin">
+                            <small class="form-text">Bu tag ile tanınacaksınız ve partilere katılacaksınız</small>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-user-plus"></i> Hesap Oluştur
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Popüler Oyunlar Showcase -->
+            <div class="card">
+                <h3><i class="fas fa-fire"></i> Popüler Oyunlar</h3>
+                <p>Game+ Party Hub'da oynayabileceğiniz popüler oyunlardan bazıları:</p>
+                <div id="popularGames" class="popular-games-grid">
+                    <!-- Oyunlar buraya yüklenecek -->
+                </div>
+            </div>
+
+            <!-- Özellikler -->
+            <div class="card">
+                <h3><i class="fas fa-star"></i> Neler Yapabilirsiniz?</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-plus-circle"></i>
+                        <h4>Parti Oluştur</h4>
+                        <p>Arkadaşlarınızla oyun partisi oluşturun, tarih ve saat belirleyin</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-vote-yea"></i>
+                        <h4>Oyun Seç</h4>
+                        <p>Hangi oyunu oynayacağınızı demokratik oylama ile belirleyin</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>Zaman Planla</h4>
+                        <p>Herkesin uygun olduğu zaman dilimini bulun ve planlayın</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-trophy"></i>
+                        <h4>Skor Takip</h4>
+                        <p>Maç sonuçlarını kaydedin, liderlik tablosunu takip edin</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-medal"></i>
+                        <h4>Rozet Kazan</h4>
+                        <p>Başarılarınızla rozet kazanın ve arkadaşlarınızla yarışın</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Mobil Uyumlu</h4>
+                        <p>Telefonunuzdan da rahatlıkla kullanın, her yerden erişin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ana Uygulama (Giriş yaptıktan sonra görünür) -->
+        <div id="mainApp" style="display: none;">
+            <!-- Header -->
+            <div class="header">
+                <h1><i class="fas fa-gamepad"></i> Game+ Party Hub</h1>
+                <div class="user-info">
+                    <span>Hoş geldin, <strong id="currentUserName"></strong>!</span>
+                    <span class="user-tag">@<span id="currentGamerTag"></span></span>
+                    <button class="btn btn-secondary btn-sm" onclick="logoutUser()">
+                        <i class="fas fa-sign-out-alt"></i> Çıkış
+                    </button>
+                </div>
+            </div>
+
+            <!-- Alert Area for Main App -->
+            <div id="alertAreaMain"></div>
+
+            <!-- Hızlı İşlemler -->
+            <div class="card">
+                <h3><i class="fas fa-bolt"></i> Hızlı İşlemler</h3>
+                <div class="quick-actions">
+                    <button class="btn" onclick="openModal('createPartyModal')">
+                        <i class="fas fa-plus"></i> Yeni Parti Oluştur
+                    </button>
+                    <button class="btn btn-secondary" onclick="joinPartyByCode()">
+                        <i class="fas fa-sign-in-alt"></i> Partiye Katıl
+                    </button>
+                    <a href="scores.html" class="btn btn-success">
+                        <i class="fas fa-trophy"></i> Skor & Liderlik
+                    </a>
+                </div>
+            </div>
+
+            <!-- Parti Filtreleri -->
+            <div class="card">
+                <h3><i class="fas fa-filter"></i> Parti Filtresi</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <select id="statusFilter" class="form-control" onchange="loadParties()">
+                            <option value="">Tüm Durumlar</option>
+                            <option value="planning">Planlama</option>
+                            <option value="voting">Oylama</option>
+                            <option value="scheduled">Planlandı</option>
+                            <option value="completed">Tamamlandı</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" id="dateFilter" class="form-control" onchange="loadParties()">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn" onclick="loadParties()">
+                            <i class="fas fa-sync"></i> Yenile
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Parti Listesi -->
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3><i class="fas fa-list"></i> Aktif Partiler</h3>
+                    <div class="loading" id="loadingSpinner" style="display: none;"></div>
+                </div>
+                <div id="partyList" class="party-list">
+                    <!-- Partiler buraya yüklenecek -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Yeni Parti Oluşturma Modal -->
+    <div id="createPartyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('createPartyModal')">&times;</span>
+            <h2><i class="fas fa-plus-circle"></i> Yeni Parti Oluştur</h2>
+            <form id="createPartyForm">
+                <div class="form-group">
+                    <label for="partyTitle">Parti Başlığı:</label>
+                    <input type="text" id="partyTitle" class="form-control" required 
+                           placeholder="Örn: Akşam FIFA Turnuvası">
+                </div>
+                <div class="form-group">
+                    <label for="partyDate">Tarih:</label>
+                    <input type="date" id="partyDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Zaman Slotu Ekle:</label>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="time" id="slotStartTime" class="form-control" placeholder="Başlangıç">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="time" id="slotEndTime" class="form-control" placeholder="Bitiş">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-primary" onclick="addTimeSlot()">
+                                <i class="fas fa-plus"></i> Slot Ekle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Eklenen Slotlar:</label>
+                    <div id="addedSlotsList" class="slots-list">
+                        <div class="alert alert-info">Henüz slot eklenmedi</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Oyun Seçenekleri (3-5 adet seçin):</label>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="scrollGamesLeft()" aria-label="Sola kaydır">◀</button>
+                        <div id="gameSelection" class="game-grid" style="flex: 1 1 auto;">
+                        <!-- Oyunlar buraya yüklenecek -->
+                        </div>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="scrollGamesRight()" aria-label="Sağa kaydır">▶</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">
+                        <i class="fas fa-save"></i> Parti Oluştur
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('createPartyModal')">
+                        <i class="fas fa-times"></i> İptal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Parti Detay Modal -->
+    <div id="partyDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('partyDetailModal')">&times;</span>
+            <div id="partyDetailContent" class="modal-scrollable">
+                <!-- Parti detayları buraya yüklenecek -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Kod ile Katılma Modal -->
+    <div id="joinCodeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('joinCodeModal')">&times;</span>
+            <h2><i class="fas fa-sign-in-alt"></i> Partiye Katıl</h2>
+            <div class="form-group">
+                <label for="inviteCode">Davet Kodu:</label>
+                <input type="text" id="inviteCode" class="form-control" placeholder="8 haneli davet kodunu girin" maxlength="8">
+            </div>
+            <button class="btn" onclick="joinParty()">
+                <i class="fas fa-sign-in-alt"></i> Katıl
+            </button>
+            <button class="btn btn-secondary" onclick="closeModal('joinCodeModal')">
+                <i class="fas fa-times"></i> İptal
+            </button>
+        </div>
+    </div>
+
+    <!-- Skor Girişi Modal -->
+    <div id="scoreEntryModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close" onclick="closeModal('scoreEntryModal')">&times;</span>
+            <h2><i class="fas fa-trophy"></i> Maç Sonucu Gir</h2>
+            <form id="scoreEntryForm">
+                <div class="form-group">
+                    <label for="matchGame">Oyun:</label>
+                    <select id="matchGame" class="form-control" required>
+                        <option value="">Oyun seçin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="matchDate">Maç Tarihi:</label>
+                    <input type="datetime-local" id="matchDate" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Oyuncu Skorları:</label>
+                    <div id="playerScores">
+                        <!-- Oyuncu skorları buraya yüklenecek -->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Skorları Kaydet
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('scoreEntryModal')">
+                        <i class="fas fa-times"></i> İptal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Sayfa yüklendiğinde
+        document.addEventListener('DOMContentLoaded', function() {
+            // Bugünün tarihini varsayılan olarak ayarla
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('partyDate').value = today;
+            document.getElementById('dateFilter').value = today;
+            
+            // Kullanıcı bilgilerini kontrol et
+            checkUser();
+            
+            // Popüler oyunları yükle
+            loadPopularGames();
+        });
+    </script>
+</body>
+</html>
