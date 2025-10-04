@@ -218,7 +218,7 @@ Sorularınız için:
 
 ## 📄 Lisans
 
-Bu proje Türk Telekom Code Night etkinliği kapsamında geliştirilmiştir.
+Bu proje Turkcell Codenight etkinliği kapsamında geliştirilmiştir.
 
 ---
 
